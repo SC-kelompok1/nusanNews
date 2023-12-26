@@ -9,7 +9,8 @@ module.exports = {
       data: allberita,
     });
   },
-  getBeritaByID: (req, res) => {},
+  getBeritaByJudul: (req, res) => {},
+  getBeritaByKategori: (req, res) => {},
   addBerita: (req, res) => {},
   deleteBeritaByID: (req, res) => {},
   updateBerita: (req, res) => {},
