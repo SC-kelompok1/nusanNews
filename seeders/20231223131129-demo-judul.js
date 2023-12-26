@@ -16,7 +16,7 @@ module.exports = {
     await queryInterface.bulkInsert("Berita", [
       {
         judul: "GUNUNG API ERUPSI",
-        artikel: "wleowleo",
+        artikel: "Gunung Erupsi",
         kategori: "Entertainment",
         foto: "https://img.rasset.ie/0016424f-1600.jpg",
         createdAt: new Date(),
@@ -43,14 +43,6 @@ module.exports = {
         artikel: "YANG NGECAP ORANG PALING PINTAR CUY,GA BERANI AKUH!",
         kategori: "Entertainment",
         foto: "https://imgcdn.solopos.com/@space/2023/12/jokowi-ugm.jpg",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        judul: "GUNUNG API ERUPSI",
-        artikel: "wleowleo",
-        kategori: "Entertainment",
-        foto: "https://img.rasset.ie/0016424f-1600.jpg",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
