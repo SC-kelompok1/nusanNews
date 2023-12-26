@@ -2,14 +2,16 @@ const express = require("express");
 const router = express.Router();
 const {
   getAllberita,
-  getBeritaByID,
+  getBeritaByJudul,
+  getBeritaByKategori,
   addBerita,
   deleteBeritaByID,
   updateBerita,
 } = require("../controler/berita.controler");
 
 router.get("/", getAllberita);
-router.get("/:id", getBeritaByID);
+router.get("/", getBeritaByJudul);
+router.get("/", getBeritaByKategori);
 router.post("/", addBerita);
 router.delete("/:id", deleteBeritaByID);
 router.put("/:id", updateBerita);
