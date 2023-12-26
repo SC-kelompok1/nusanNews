@@ -5,12 +5,12 @@ module.exports = {
   getAllberita: async (req, res) => {
     try {
       const allberita = await Berita.findAll();
-      res.json({
+      res.status(200).json({
         message: "success get data ",
         data: allberita,
       });
     } catch (err) {
-      res.status(400).json({ message: "Maaf error", err: err.message });
+      res.status(500).json({ message: "Maaf error", err: err.message });
     }
   },
   getBeritaByJudul: (req, res) => {},
