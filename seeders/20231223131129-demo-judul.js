@@ -16,7 +16,7 @@ module.exports = {
     await queryInterface.bulkInsert("Berita", [
       {
         judul: "GUNUNG API ERUPSI",
-        artikel: "wleowleo",
+        artikel: "Erupsi yang terjadi pada gunung merapi",
         kategori: "Entertainment",
         foto: "https://img.rasset.ie/0016424f-1600.jpg",
         createdAt: new Date(),
