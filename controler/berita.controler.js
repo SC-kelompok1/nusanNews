@@ -33,7 +33,6 @@ module.exports = {
       res.status(500).json({ message: "maaf error", err: err.message });
     }
   },
-
   addBerita: (req, res) => {},
   deleteBeritaByID: (req, res) => {},
   updateBerita: (req, res) => {},
