@@ -13,41 +13,52 @@ module.exports = {
       res.status(500).json({ message: "Maaf error", err: err.message });
     }
   },
-  getBeritaByJudul: (req, res) => {},
-  getBeritaByKategori: (req, res) => {},
-  addBerita: async (req, res) => {
-      try {
-        
-        const id = req.params.id
-        const {judul, artikel, kategori, foto} = req.body
-      
-        const data = await Berita.create({judul, artikel, kategori, foto
-        });
-        res.status(200).json({
-          message: "success",
-        })
-      } catch (error) {
-        res.status(500).json({
-          message:error.message})
-    }
-  },
+  
 
-  deleteBeritaByID: async (req, res) => {
+  getBeritaByJudul: async (req, res) => {
     try {
-        const id = req.params.id
-        // Use the MongoDB model to find and delete the document by ID
-        const deletedBerita = await Berita.destroy({
-          where: {
-            id : id
-          }
-        });
-  
-        res.status(200).json({ message: 'Berita deleted successfully'  });
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
-  
+      const { judul } = req.params;
+      const berita = await Berita.findAll({
+        where: { judul },
+      });
+
+      if (!berita) {
+        return res.status(404).json({ message: "tidak ada datanya" });
+      }
+      res.status(200).json({
+        message: "success get data",
+        data: berita,
+      });
+    } catch (err) {
+      res.status(500).json({ message: "maaf error", err: err.message });
     }
   },
-  updateBerita: (req, res) => {},
-};
+
+  getBeritaByKategori: (req, res) => {},
+  addBerita: (req, res) => {},
+  deleteBeritaByID: (req, res) => {},
+  updateBerita: async (req, res) => {
+
+    try {
+      const id = req.params.id
+      const {judul, artikel, kategori, foto} = req.body
+      const berita = await Berita.findOne({
+        where: {
+          id : id,
+        }
+      })
+      const data = await Berita.update({judul, artikel, kategori, foto}, {
+        where: {
+          id: berita.id,
+        }
+      });
+      res.status(200).json({
+        message: "success",
+      })
+    } catch (error) {
+      res.status(500).json({
+        message:error.message
+      })
+    }
+    }
+  }
