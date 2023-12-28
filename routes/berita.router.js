@@ -10,7 +10,7 @@ const {
 } = require("../controler/berita.controler");
 
 router.get("/", getAllberita);
-router.get("/", getBeritaByJudul);
+router.get("/:judul", getBeritaByJudul);
 router.get("/:kategori", getBeritaByKategori);
 router.post("/", addBerita);
 router.delete("/:id", deleteBeritaByID);
