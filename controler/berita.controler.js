@@ -13,7 +13,6 @@ module.exports = {
       res.status(500).json({ message: "Maaf error", err: err.message });
     }
   },
-  
 
   getBeritaByJudul: async (req, res) => {
     try {
@@ -38,7 +37,6 @@ module.exports = {
   addBerita: (req, res) => {},
   deleteBeritaByID: (req, res) => {},
   updateBerita: async (req, res) => {
-
     try {
       const id = req.params.id
       const {judul, artikel, kategori, foto} = req.body
