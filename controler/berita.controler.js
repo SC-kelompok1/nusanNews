@@ -14,26 +14,40 @@ module.exports = {
     }
   },
   getBeritaByJudul: (req, res) => {},
+  getBeritaByKategori: (req, res) => {},
+  addBerita: async (req, res) => {
+      try {
+        
+        const id = req.params.id
+        const {judul, artikel, kategori, foto} = req.body
+      
+        const data = await Berita.create({judul, artikel, kategori, foto
+        });
+        res.status(200).json({
+          message: "success",
+        })
+      } catch (error) {
+        res.status(500).json({
+          message:error.message})
+    }
+  },
 
-  getBeritaByKategori: async (req, res) => {
+  deleteBeritaByID: async (req, res) => {
     try {
-      const { kategori } = req.params;
-      const berita = await Berita.findAll({
-        where: { kategori },
-      });
-
-      if (!berita) {
-        return res.status(404).json({ message: "tidak ada datanya" });
-      }
-      res.status(200).json({
-        message: "success get data",
-        data: berita,
-      });
-    } catch (err) {
-      res.status(500).json({ message: "maaf error", err: err.message });
+        const id = req.params.id
+        // Use the MongoDB model to find and delete the document by ID
+        const deletedBerita = await Berita.destroy({
+          where: {
+            id : id
+          }
+        });
+  
+        res.status(200).json({ message: 'Berita deleted successfully'  });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+  
     }
   },
-  addBerita: (req, res) => {},
-  deleteBeritaByID: (req, res) => {},
   updateBerita: (req, res) => {},
 };
