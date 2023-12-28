@@ -11,7 +11,7 @@ const {
 
 router.get("/", getAllberita);
 router.get("/:judul", getBeritaByJudul);
-router.get("/:kategori", getBeritaByKategori);
+router.get("/kategori/:kategori", getBeritaByKategori);
 router.post("/", addBerita);
 router.delete("/:id", deleteBeritaByID);
 router.put("/:id", updateBerita);

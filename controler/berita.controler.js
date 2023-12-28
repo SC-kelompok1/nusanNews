@@ -31,10 +31,9 @@ module.exports = {
       res.status(500).json({ message: "maaf error", err: err.message });
     }
   },
-    
-  getBeritaByKategori: (req, res) => {
-  try {
->>>>>>> 1d6804318acc8da758f33483071d979f47e3427e
+
+  getBeritaByKategori: async (req, res) => {
+    try {
       const { kategori } = req.params;
       const berita = await Berita.findAll({
         where: { kategori },
@@ -52,50 +51,60 @@ module.exports = {
     }
   },
 
-  addBerita: (req, res) => {},
-  deleteBeritaByID: (req, res) => {},
-  updateBerita: (req, res) => {},
-};
-=======
-  
-  deleteBeritaByID: (req, res) => {
-  try {
-        const id = req.params.id
-        const deletedBerita = await Berita.destroy({
-          where: {
-            id : id
-          }
-        });
+  addBerita: async (req, res) => {
+    try {
+      const id = req.params.id;
+      const { judul, artikel, kategori, foto } = req.body;
 
-        res.status(200).json({ message: 'Berita deleted successfully'  });
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+      const data = await Berita.create({ judul, artikel, kategori, foto });
+      res.status(200).json({
+        message: "success",
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  },
+  deleteBeritaByID: async (req, res) => {
+    try {
+      const id = req.params.id;
+      const deletedBerita = await Berita.destroy({
+        where: {
+          id: id,
+        },
+      });
 
+      res.status(200).json({ message: "Berita deleted successfully" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error" });
     }
   },
   updateBerita: async (req, res) => {
     try {
-      const id = req.params.id
-      const {judul, artikel, kategori, foto} = req.body
+      const id = req.params.id;
+      const { judul, artikel, kategori, foto } = req.body;
       const berita = await Berita.findOne({
         where: {
-          id : id,
-        }
-      })
-      const data = await Berita.update({judul, artikel, kategori, foto}, {
-        where: {
-          id: berita.id,
-        }
+          id: id,
+        },
       });
+      const data = await Berita.update(
+        { judul, artikel, kategori, foto },
+        {
+          where: {
+            id: berita.id,
+          },
+        }
+      );
       res.status(200).json({
         message: "success",
-      })
+      });
     } catch (error) {
       res.status(500).json({
-        message:error.message
-      })
+        message: error.message,
+      });
     }
-    }
-  }
->>>>>>> 1d6804318acc8da758f33483071d979f47e3427e
+  },
+};
