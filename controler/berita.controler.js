@@ -10,7 +10,7 @@ module.exports = {
         data: allberita,
       });
     } catch (err) {
-      res.status(500).json({ message: "Maaf terjadi error", err: err.message });
+      res.status(500).json({ message: "Maaf error", err: err.message });
     }
   },
   getBeritaByJudul: (req, res) => {},
